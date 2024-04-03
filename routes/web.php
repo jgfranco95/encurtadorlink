@@ -14,8 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [App\Http\Controllers\PrincipalController::class, 'Principal' ]) ;
+Route::get('/', [App\Http\Controllers\PrincipalController::class, 'Principal' ]) ->name("site.principal");
  
-Route::get('/contato',[App\Http\Controllers\ContatoController::class, 'contato']);
+Route::get('/contato',[App\Http\Controllers\ContatoController::class, 'contato'])->name("site.contato");
 
-Route::get('/sobre-nos',[App\Http\Controllers\SobrenosController::class, 'Sobrenos']);
+Route::get('/sobre-nos',[App\Http\Controllers\SobrenosController::class, 'Sobrenos'])->name("site.Sobrenos");
+
+route::prefix('app')->group(function(){
+
+    Route::get('/login',[App\Http\Controllers\login::class,'login']);
+    
+    Route::get('/clientes',[App\Http\Controllers\clientes::class,'clientes']);
+    
+    Route::get('/fornecedores',[App\Http\Controllers\fornecedores::class,'fornecedores']);
+    
+    Route::get('/produtos',[App\Http\Controllers\produtos::class,'produtos']);
+
+});
